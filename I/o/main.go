@@ -1,18 +1,25 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"os"
+	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
-func main()  {
 
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Println("Enter the pizza rating")
+func Handler(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Hey, This is Sanjana B- Bad lil Bitch's server"))
+}
+func main() {
 
-	input, _:= reader.ReadString('\n')
-	fmt.Println("The rating you have given is :", input)
+	r := mux.NewRouter()
+
+	r.HandleFunc("/sanjana",Handler)
+
+	http.ListenAndServe(":3000", r)
+
 	
+
+
 	
 }
